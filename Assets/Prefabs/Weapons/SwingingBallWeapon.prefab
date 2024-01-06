@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b7149d862c3e54484c00bd261ef1e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldownTime: 0.1
   spawnObject: {fileID: 8252050401068906373, guid: 9a79e9e421e52714893f3785a5ab769b, type: 3}
   doesSpawnAnything: 1

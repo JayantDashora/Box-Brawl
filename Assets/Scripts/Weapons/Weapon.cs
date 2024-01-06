@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+
+    // Variables
+    public float cooldownTime;
     protected WeaponController weaponControllerRef;
     [SerializeField] protected GameObject spawnObject;
 
     [SerializeField] protected bool doesSpawnAnything;
+
     protected void OnEnable() {
 
         weaponControllerRef = GameObject.FindWithTag("Player").transform.GetChild(0).GetComponent<WeaponController>();
