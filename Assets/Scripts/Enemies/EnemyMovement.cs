@@ -101,7 +101,7 @@ public class EnemyMovement : MonoBehaviour
         foreach (Vector3 targetPoint in pathCheckpoints){
             Vector3 targetPosition = targetPoint;
 
-            while (Vector3.Distance(transform.position, targetPosition) > 0.01f){
+            while (Vector3.Distance(transform.position, targetPosition) > 0.1f){
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
                 yield return null;
             }
