@@ -9,6 +9,7 @@ public class Landmine : MonoBehaviour
     // Variables
 
     [SerializeField] private float explosionRadius;
+    [SerializeField] private ParticleSystem blastEffect;
 
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Enemy")){
@@ -20,7 +21,7 @@ public class Landmine : MonoBehaviour
 
         foreach(Collider collider in enemiesInRange){
             if(collider.gameObject.CompareTag("Enemy")){
-                Destroy(collider.gameObject);
+                collider.gameObject.GetComponent<EnemyCollisionsHandler>().Die();
             }
         }
 
@@ -29,6 +30,6 @@ public class Landmine : MonoBehaviour
     }
 
     private void BlastEffects(){
-         // Game juice effects for landmine blast
+        Instantiate(blastEffect,transform.position,Quaternion.identity);
     }    
 }

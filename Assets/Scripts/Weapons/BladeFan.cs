@@ -7,15 +7,10 @@ public class BladeFan : MonoBehaviour
     // Kills one enemy on collision with enemy
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Enemy")){
-            BladeFanEffect();
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<EnemyCollisionsHandler>().Die();
             Destroy(gameObject);
         }
     }
 
-    // Fan attacks effects ( When fan attacks the enemy) ( Game Juice Effect)
-    private void BladeFanEffect(){
-
-    }
 
 }

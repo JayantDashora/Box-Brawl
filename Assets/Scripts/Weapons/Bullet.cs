@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Enemy")){
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<EnemyCollisionsHandler>().Die();
             Destroy(gameObject);
         }
         else if(other.gameObject.CompareTag("Wall")){

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2086344431266383188}
   - component: {fileID: 998608554868457354}
   - component: {fileID: 3146239199910746662}
-  - component: {fileID: 5960352964106906946}
   - component: {fileID: -7769470131087621586}
   - component: {fileID: 3578610439568576758}
+  - component: {fileID: -8700397071873361204}
   m_Layer: 0
   m_Name: BladeFan
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.73, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7216776305722305075}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 5400099024392959863, guid: 5624c67d61d229c4e9afc39258261ca5, type: 3}
 --- !u!23 &3146239199910746662
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -86,27 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5960352964106906946
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7216776305722305075}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-7769470131087621586
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,7 +111,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &3578610439568576758
 MonoBehaviour:
@@ -146,3 +125,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82884f5c2b5bea44c8885b000159064f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &-8700397071873361204
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7216776305722305075}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.58107144, y: 0.26951396, z: 0.57505476}
+  m_Center: {x: -0.000000059604645, y: 0.13475698, z: 0}

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b7149d862c3e54484c00bd261ef1e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownTime: 3
+  cooldownTime: 4
   spawnObject: {fileID: 7084233769797899395, guid: 76e115c4eea5fd842aa318ca4e7f14b6, type: 3}
   doesSpawnAnything: 1
+  spawnEffect: {fileID: 11315002100181852, guid: 876ca7be77ff81245a52d76a93a23327, type: 3}

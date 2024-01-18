@@ -9,11 +9,11 @@ public class EnemySpawnManager : MonoBehaviour
     private void Start() {
         
         // Spawn normal enemies after waiting random number of seconds
-        InvokeRepeating("SpawnNormalEnemy",2f,Random.Range(2,4));
+        InvokeRepeating("SpawnNormalEnemy",2f,Random.Range(4,8));
         // Spawn obstacle dropper enemies after waiting random number of seconds
-        InvokeRepeating("SpawnObstacleDropperEnemy",4f,Random.Range(15,20));
+        InvokeRepeating("SpawnObstacleDropperEnemy",4f,Random.Range(20,25));
         // Spawn sprinter enemies after waiting random number of seconds
-        InvokeRepeating("SpawnSprinterEnemy",6f,Random.Range(15,20));
+        InvokeRepeating("SpawnSprinterEnemy",6f,Random.Range(20,25));
 
     }
 

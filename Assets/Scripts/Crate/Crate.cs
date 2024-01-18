@@ -9,6 +9,7 @@ public class Crate : MonoBehaviour
     CrateSpawnManager crateSpawnManagerRef;
     GameObject playerRef;
     [SerializeField] private GameObject[] weapons;
+    [SerializeField] private ParticleSystem crateCollectPE;
 
     private void Start() {
         crateSpawnManagerRef = GameObject.Find("GameManagers/CrateSpawnManager").GetComponent<CrateSpawnManager>();
@@ -44,6 +45,9 @@ public class Crate : MonoBehaviour
             // Adding to the game score
             GameData.score++;
 
+            // Resetting the timer on crate collection
+            other.gameObject.transform.GetChild(0).GetComponent<WeaponController>().ResetTimer();
+
             // Game Juice
             GameJuiceEffects();
 
@@ -78,6 +82,7 @@ public class Crate : MonoBehaviour
     // Function that adds game juice to the crate pickup 
     private void GameJuiceEffects(){
         // Game Juice
+        Instantiate(crateCollectPE,transform.position,Quaternion.identity);
     }
 
 }

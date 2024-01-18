@@ -72,15 +72,11 @@ public class HomingMissile : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         
         if(other.gameObject.CompareTag("Enemy")){
-            BlastEffect();
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<EnemyCollisionsHandler>().Die();
             Destroy(gameObject);
         }
 
     }
 
-    // Blast game juice effect
-    private void BlastEffect(){
-        
-    }
+
 }

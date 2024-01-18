@@ -3,6 +3,8 @@ using UnityEngine;
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
+    [SerializeField] private Animator animator;
+    [SerializeField] private ParticleSystem clickEffect;
 
     Vector3 targetPoint = new Vector3(0, 1, 0);
 
@@ -10,6 +12,10 @@ public class PlayerMovementController : MonoBehaviour
     {
         UserInput();
         // Debug.Log(GameData.score);
+        if(GameData.health <= 0){
+            Destroy(gameObject);
+        }
+            
     }
 
     private void UserInput()
@@ -20,14 +26,30 @@ public class PlayerMovementController : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(touch.position);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit) && (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Crate"))){
+            if ((Physics.Raycast(ray, out hit) && (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Crate")))){
                 targetPoint = hit.point;
+                
+                if(MovePlayer(targetPoint)){
+                    animator.SetTrigger("Running");
+                }
+
             }
+
+            if(touch.phase == TouchPhase.Began){
+                Instantiate(clickEffect,new Vector3(targetPoint.x , 1 , targetPoint.z),Quaternion.identity);
+            }
+            
         }
 
         if(MovePlayer(targetPoint)){
             // Move the player if no wall is in between.
+            Vector3 direction = (new Vector3(targetPoint.x,transform.position.y,targetPoint.z) - transform.position).normalized;
+            transform.forward = direction;
             transform.position = Vector3.Lerp(transform.position, new Vector3(targetPoint.x, 1, targetPoint.z), movementSpeed * Time.deltaTime);
+            if(Vector3.Distance(transform.position,targetPoint) < 1f){
+                transform.forward = direction;
+                animator.SetTrigger("Idling");
+            }
         }
     }
 
@@ -45,4 +67,5 @@ public class PlayerMovementController : MonoBehaviour
             return true;
         }
     }
+
 }

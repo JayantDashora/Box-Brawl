@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected GameObject spawnObject;
 
     [SerializeField] protected bool doesSpawnAnything;
+    [SerializeField] private ParticleSystem spawnEffect;
 
     protected void OnEnable() {
 
@@ -32,7 +33,7 @@ public class Weapon : MonoBehaviour
 
     protected virtual void SpawnAttack(){
         GameJuiceEffects();
-        Instantiate(spawnObject,new Vector3(transform.position.x ,2, transform.position.z),Quaternion.identity);
+        Instantiate(spawnObject,new Vector3(transform.position.x ,4, transform.position.z),Quaternion.identity);
     } 
 
     protected virtual void Attack(){
@@ -41,6 +42,6 @@ public class Weapon : MonoBehaviour
 
    
     protected virtual void GameJuiceEffects(){
-        // Game juice effects for weapon use ( Common for spawning any weapon )
+        Instantiate(spawnEffect,transform.position + new Vector3(0,1,0),Quaternion.identity);
     }
 }

@@ -16,6 +16,6 @@ public class LevelExit : MonoBehaviour
 
     // Game juice effects for when the enemy leaves the level
     private void EnemyExitEffect(){
-        
+        GameObject.FindWithTag("Player").GetComponent<PlayerHurtEffect>().PlayerHurt();
     }
 }

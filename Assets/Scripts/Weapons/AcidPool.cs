@@ -18,12 +18,12 @@ public class AcidPool : MonoBehaviour
 
             if(health > 0){
                 health--;
-                AttackEffect();
-                Destroy(other.gameObject);
+                
+                other.gameObject.GetComponent<EnemyCollisionsHandler>().Die();
             }
             else{
-                DestroyEffect();
-                Destroy(other.gameObject);
+                
+                other.gameObject.GetComponent<EnemyCollisionsHandler>().Die();
                 Destroy(gameObject);
             }
         }
@@ -34,27 +34,13 @@ public class AcidPool : MonoBehaviour
             
             // Updating health
             GameData.health--;
-            // Game Juice Effects for harming the player
-            PlayerHurtEffects(); 
+            other.gameObject.transform.GetComponent<PlayerHurtEffect>().PlayerHurt();
             // Destroying the enemy
             Destroy(gameObject);
 
         }
     }
 
-    // Effect played when the acid pool's health is over.
-    private void DestroyEffect(){
-        
-    }
 
-    // Acid kill effect (When the enemy collides with the acid pool) ( Game Juice Effect)
-    private void AttackEffect(){
-
-    }
-
-    // Game Juice effects for harming the player
-    private void PlayerHurtEffects(){
-        
-    }
     
 }

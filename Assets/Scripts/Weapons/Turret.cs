@@ -11,7 +11,10 @@ public class Turret : MonoBehaviour
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float duration;
     [SerializeField] private float attackRadius;
+    [SerializeField] private ParticleSystem shootEffect;
     private Transform targetEnemy;
+    private bool canRotate = false;
+
     private void Start() {
         // Timer for how long the turret will be there
         Invoke("SelfDestruct",duration);
@@ -19,6 +22,13 @@ public class Turret : MonoBehaviour
         // Shooting with the specified frequency
         InvokeRepeating("Shoot", 0.1f, shootingFrequency);
     }
+
+    private void OnCollisionEnter(Collision other) {
+        if(other.gameObject.CompareTag("Ground")){
+            canRotate = true;
+        }
+    }
+
     private void Shoot(){
 
         // Find the target
@@ -26,28 +36,27 @@ public class Turret : MonoBehaviour
         targetEnemy = FindClosestEnemy(Physics.OverlapSphere(transform.position, attackRadius)).transform;
         
         // Rotate towards it
-        Vector3 direction = (targetEnemy.position - transform.position).normalized;
-        transform.forward = direction;
+        if(canRotate){
+            Vector3 direction = (targetEnemy.position - transform.position).normalized;
+            transform.forward = direction;
+        }
+
         
         // Shoot at it
         ShootEffects();
-        Instantiate(bullet,shootPoint.position,transform.rotation);
+        if(canRotate)
+            Instantiate(bullet,shootPoint.position,transform.rotation);
 
     }
 
     // Game juice effects for shooting
     private void ShootEffects(){
-
+        Instantiate(shootEffect,shootPoint.position,Quaternion.identity);
     }
 
-    // Game juice effects for destroying the turret
 
-    private void DestroyEffects(){
-
-    }
 
     private void SelfDestruct(){
-        DestroyEffects();
         Destroy(gameObject);
     }
 

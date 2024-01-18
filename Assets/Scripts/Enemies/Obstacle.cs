@@ -18,15 +18,10 @@ public class Obstacle : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Player")){
-            PlayerHarmEffect();
+            other.gameObject.transform.GetComponent<PlayerHurtEffect>().PlayerHurt();
             GameData.health--;
             Destroy(gameObject);
         }
-    }
-
-    // Game juice effects for when the obstacle collides with the enemy
-    private void PlayerHarmEffect(){
-        
     }
 
     private void SelfDestruct(){

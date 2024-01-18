@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
 {
     // Variables
 
-    [SerializeField] private float movementSpeed;
+    public float movementSpeed;
     private List<Vector3> pathCheckpoints = new List<Vector3>();
     private Vector3 origin = new Vector3(-12,1,0);
 
@@ -101,7 +101,9 @@ public class EnemyMovement : MonoBehaviour
         foreach (Vector3 targetPoint in pathCheckpoints){
             Vector3 targetPosition = targetPoint;
 
-            while (Vector3.Distance(transform.position, targetPosition) > 0.1f){
+            while (Vector3.Distance(transform.position, targetPosition) > 0.2f){
+                Vector3 direction = (new Vector3(targetPoint.x,transform.position.y,targetPoint.z) - transform.position).normalized;
+                transform.forward = direction;
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
                 yield return null;
             }

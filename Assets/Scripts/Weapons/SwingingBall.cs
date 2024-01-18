@@ -26,7 +26,7 @@ public class SwingingBall : MonoBehaviour
         
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         
         // Revolve around the player
         RevolveAroundPlayer();
@@ -56,14 +56,11 @@ public class SwingingBall : MonoBehaviour
 
             // Game juice effect when the enemy is killed
 
-            GameJuiceEffects();
-            Destroy(other.gameObject);
+           
+            other.gameObject.GetComponent<EnemyCollisionsHandler>().Die();;
             
         }
 
     }
 
-    private void GameJuiceEffects(){
-        // Game juice effect when the enemy is killed
-    }
 }

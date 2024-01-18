@@ -7,6 +7,6 @@ public static class GameData
     // Variables
 
     public static int score;
-    public static int health = 3;
+    public static int health = 10;
 
 }

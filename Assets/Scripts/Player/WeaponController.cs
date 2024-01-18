@@ -3,28 +3,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class WeaponController : MonoBehaviour
 {
     private float doubleTapTimeThreshold = 0.2f;
-    private float cooldownTime; // Adjust this value to set the cooldown time
     private float lastTapTime;
-    private bool isOnCooldown = false;
-    
+    private float cooldownTime; // Adjust this value for the cooldown time between attacks
+    private float cooldownTimer = 0f; // Timer for tracking cooldown
+    [SerializeField] private GameObject attackIndicator;
+
     public Action OnDoubleTapped;
 
     private void Update()
     {
-        if (!isOnCooldown && DoubleTapped())
+        if (cooldownTimer > 0)
+        {
+            // Decrement the cooldown timer
+            cooldownTimer -= Time.deltaTime;
+
+            if (cooldownTimer <= 0)
+            {
+                // Reset cooldown timer when it reaches zero
+                cooldownTimer = 0;
+            }
+        }
+
+        if(cooldownTimer == 0){
+            attackIndicator.SetActive(true);
+        }
+        else{
+            attackIndicator.SetActive(false);
+        }
+
+
+        if (DoubleTapped() && cooldownTimer == 0)
         {
             // Use weapon
             OnDoubleTapped?.Invoke();
 
-            // Update the cooldown time value
+            // Screen Shake
+            CameraShakeEffect.Instance.ScreenShake(7, 0.1f);
+
+            // Getting cooldown time from the weapon
             cooldownTime = transform.GetChild(0).GetComponent<Weapon>().cooldownTime;
 
-            // Start the cooldown timer
-            StartCoroutine(StartCooldown());
+            // Put the weapon on cooldown
+            cooldownTimer = cooldownTime;
         }
     }
 
@@ -55,10 +78,8 @@ public class WeaponController : MonoBehaviour
         return false;
     }
 
-    private IEnumerator StartCooldown()
-    {
-        isOnCooldown = true;
-        yield return new WaitForSeconds(cooldownTime);
-        isOnCooldown = false;
+    public void ResetTimer(){
+        cooldownTimer = 0;
     }
+
 }

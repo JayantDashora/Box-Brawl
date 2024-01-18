@@ -6,7 +6,12 @@ using UnityEngine;
 public class Nuke : MonoBehaviour
 {
 
+    // Variables
+
+    [SerializeField] private Animator screenTintAnimator;
+
     private void Start() {
+        screenTintAnimator = GameObject.Find("Canvas/Misc/NukeTint").GetComponent<Animator>();
         Blast();
     }
 
@@ -18,7 +23,7 @@ public class Nuke : MonoBehaviour
         BlastGameJuice();
 
         foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy")){
-            Destroy(enemy);
+            enemy.GetComponent<EnemyCollisionsHandler>().Die();
         }
 
     }
@@ -27,7 +32,8 @@ public class Nuke : MonoBehaviour
     // Game juice effect for the big blast that covers the whole screen
 
     private void BlastGameJuice(){
-        // Game juice effect for the big blast that covers the whole screen
+        screenTintAnimator.Play("Flash");
+        CameraShakeEffect.Instance.ScreenShake(15f,0.3f);
     }
 
 

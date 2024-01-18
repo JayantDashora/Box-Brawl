@@ -17,7 +17,7 @@ public class SprintHandler : MonoBehaviour
     // Attack the player if in range 
     private void AttackPlayer(){
         foreach(Collider col in Physics.OverlapSphere(transform.position, attackRadius)){
-            if(col.gameObject.CompareTag("Player")){
+            if(col.gameObject.CompareTag("Player") && (GetComponent<EnemyCollisionsHandler>().isDead == false)){
                 // Attack the player
                 SprintEffects();
                 enemyMovement.enabled = false;
